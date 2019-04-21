@@ -1,16 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <router-link to="/" tag="li" class="nav-item">
+            <a class="nav-link">
+              Home
+            </a>
+          </router-link>
+          <router-link to="/users" tag="li" class="nav-item">
+            <a class="nav-link">
+              Users
+            </a>
+          </router-link>
+          <router-link to="/add" tag="li" class="nav-item">
+            <a class="nav-link">
+              Add user
+            </a>
+          </router-link>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
