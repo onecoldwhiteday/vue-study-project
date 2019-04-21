@@ -13,7 +13,6 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Registered</th>
-      <th>Edit User Data</th>
     </tr>
 
     <tr v-for="user in users" :key="user.id">
@@ -25,11 +24,6 @@
       <td>{{ user.email }}</td>
       <td>{{ user.phone }}</td>
       <td>{{ user.registered }}</td>
-      <td>
-        <button type="button" class="btn btn-primary" @click="openEditPage(user.id)">
-          Edit
-        </button>
-      </td>
     </tr>
   </table>
 </template>

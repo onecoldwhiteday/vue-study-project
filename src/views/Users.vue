@@ -7,7 +7,7 @@
     <div v-else-if="!loadingData">
       Error while loading page
     </div>
-    <user-list :users="users" @edit="openEditUser"></user-list>
+    <user-list :users="users"></user-list>
   </div>
 </template>
 
@@ -55,11 +55,11 @@ export default {
     },
     loadingData: function() {
       return this.users.length > 0
-    },
-    openEditUser: function(id) {
-      window.open('./edit.html?userId=' + id)
-      // return userId
     }
+    // openEditUser: function(id) {
+    //   window.open('./edit.html?userId=' + id)
+    //   // return userId
+    // }
   }
 }
 </script>
