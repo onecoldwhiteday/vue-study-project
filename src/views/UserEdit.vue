@@ -6,7 +6,7 @@
       Loading...
     </div>
     <template v-else>
-      <user-form :user="user" @update="updateUser"></user-form>
+      <user-form v-model="user"></user-form>
       {{ user }}
 
       <button type="button" class="btn btn-primary" @click="save">Save</button>
@@ -15,13 +15,12 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-import UserForm from '@/components/UserForm.vue'
+import axios from '@/axios.js'
 
 export default {
   name: 'UserEdit',
   components: {
-    UserForm
+    'user-form': () => import('@/components/UserForm.vue')
   },
   data: () => ({
     user: null
@@ -31,16 +30,13 @@ export default {
       return this.$route.params.id
     },
     url() {
-      return 'http://localhost:3000/users/' + this.id
+      return '/users/' + this.id
     }
   },
   mounted() {
     this.loadUser()
   },
   methods: {
-    updateUser(newUser) {
-      this.user = newUser
-    },
     loadUser() {
       axios
         .get(this.url)

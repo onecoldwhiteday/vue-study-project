@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/views/Home.vue'
-import AddUser from '@/views/AddUser.vue'
-import UserEdit from '@/views/UserEdit.vue'
-
-import UserList from '@/views/Users.vue'
-
 Vue.use(Router)
 
 export default new Router({
@@ -15,19 +9,19 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('@/views/Home.vue')
     },
     {
       path: '/users',
-      component: UserList
+      component: () => import('@/views/Users.vue')
     },
     {
       path: '/edit/:id',
-      component: UserEdit
+      component: () => import('@/views/UserEdit.vue')
     },
     {
       path: '/add',
-      component: AddUser
+      component: () => import('@/views/AddUser.vue')
     }
   ]
 })

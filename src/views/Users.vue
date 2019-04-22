@@ -10,12 +10,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import UserList from '@/components/UserList.vue'
+import axios from '@/axios.js'
 
 export default {
   components: {
-    'user-list': UserList
+    'user-list': () => import('@/components/UserList.vue')
   },
   data: () => {
     return {
@@ -33,7 +32,7 @@ export default {
   methods: {
     loadData: function() {
       axios
-        .get('http://localhost:3000/users')
+        .get('/users')
         .then(response => {
           this.users = response.data
         })

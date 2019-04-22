@@ -58,7 +58,7 @@
           type="checkbox"
           id="status"
           v-model="localUser.isActive"
-          :checked="user.isActive"
+          :checked="localUser.isActive"
           class="col-sm-8 form-control"
         />
         Yep
@@ -126,6 +126,10 @@
 <script>
 export default {
   name: 'UserForm',
+  model: {
+    prop: 'user',
+    event: 'test'
+  },
   props: {
     user: {
       type: Object,
@@ -141,15 +145,9 @@ export default {
       deep: true,
       handler() {
         console.log('UPD')
-        this.$emit('update', Object.assign({}, this.localUser))
+        this.$emit('test', Object.assign({}, this.localUser))
       }
     }
-    // user: {
-    //     deep: true,
-    //     handler() {
-    //         this.localUser = Object.assign({}, this.user)
-    //     }
-    // }
   },
   created() {
     this.localUser = Object.assign({}, this.user)
