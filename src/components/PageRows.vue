@@ -1,15 +1,30 @@
 <template>
-  <select @change="currentVal" class="form-control">
-    <option v-for="value in rowsArr" :key="value">
-      {{ value }}
-    </option>
-  </select>
+  <div>
+    <input
+      type="range"
+      v-model.number="rows"
+      min="5"
+      :max="max"
+      class="form-control-range"
+      id="rows-range"
+      list="marks"
+    />
+    <label>There is {{ rows }} users on the page</label>
+    <datalist id="marks">
+      <option v-for="point in max" :value="point" :key="point">{{ item }}</option>
+    </datalist>
+  </div>
 </template>
 <script>
 export default {
   name: 'PageRows',
+  props: {
+    max: {
+      type: Number,
+      required: true
+    }
+  },
   data: () => ({
-    rowsArr: ['5', '10', '15'],
     rows: 5
   }),
   watch: {
@@ -17,11 +32,6 @@ export default {
       handler() {
         this.$emit('input', this.rows)
       }
-    }
-  },
-  methods: {
-    currentVal() {
-      this.rows += 5
     }
   }
 }

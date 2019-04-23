@@ -5,6 +5,11 @@
       <span class="users-amount">{{ total }}</span>
     </caption>
     <tr>
+      <td colspan="4">
+        <page-rows v-model="rows" :max="total"></page-rows>
+      </td>
+    </tr>
+    <tr>
       <th>#</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -29,9 +34,7 @@
     </tr>
 
     <tr>
-      <td colspan="4">
-        <page-rows v-model="rows"></page-rows>
-      </td>
+      <td colspan="4"></td>
       <td colspan="4">
         <pagination :users="users" v-model="currentPage" :rows="rows"></pagination>
       </td>

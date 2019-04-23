@@ -3,13 +3,17 @@
     <nav class="pages-nav">
       <ul class="pagination bg-blue">
         <li class="page-item">
-          <button class="page-link" @click="prevPage" :disabled="firstPage">Prev</button>
+          <button type="button" class="page-link" @click="prevPage" :disabled="firstPage">
+            Prev
+          </button>
         </li>
         <li v-for="page in pages" :key="page" class="page-item">
-          <button class="page-link">{{ page }}</button>
+          <button type="button" class="page-link">{{ page }}</button>
         </li>
         <li class="page-item">
-          <button class="page-link" @click="nextPage" :disabled="lastPage">Next</button>
+          <button type="button" class="page-link" @click="nextPage" :disabled="lastPage">
+            Next
+          </button>
         </li>
       </ul>
     </nav>
@@ -39,7 +43,7 @@ export default {
       return this.currentPage === 0
     },
     lastPage() {
-      return this.currentPage === this.pages
+      return this.currentPage === this.pages - 1
     }
   },
   watch: {
