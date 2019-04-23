@@ -15,7 +15,7 @@
       <th>Registered</th>
     </tr>
 
-    <tr v-for="user in users" :key="user.id">
+    <tr v-for="user in pageView()" :key="user.id">
       <td>
         <router-link :to="'/edit/' + user.id"> # {{ user.id }} </router-link>
       </td>
@@ -27,29 +27,50 @@
       <td>{{ user.phone }}</td>
       <td>{{ user.registered }}</td>
     </tr>
+
+    <tr>
+      <td colspan="4">
+        <page-rows v-model="rows"></page-rows>
+      </td>
+      <td colspan="4">
+        <pagination :users="users" v-model="currentPage" :rows="rows"></pagination>
+      </td>
+    </tr>
   </table>
 </template>
 
 <script>
 export default {
   name: 'UserList',
+  components: {
+    pagination: () => import('@/components/Pagination.vue'),
+    'page-rows': () => import('@/components/PageRows.vue')
+  },
   props: {
     users: {
       type: Array,
       required: true
     }
   },
+  data: () => ({
+    rows: 5,
+    currentPage: null
+  }),
   computed: {
-    total: function() {
+    total() {
       return this.users.length
+    },
+    start() {
+      return this.currentPage * this.rows
     }
   },
   methods: {
-    handleCopied: function(text) {
-      console.log(text)
-    },
-    openEditPage: function(userId) {
+    openEditPage(userId) {
       this.$emit('edit', userId)
+    },
+    pageView() {
+      let localUsers = [...this.users]
+      return localUsers.slice(this.start, this.start + this.rows)
     }
   }
 }

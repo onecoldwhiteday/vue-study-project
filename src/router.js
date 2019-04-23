@@ -23,6 +23,10 @@ export default new Router({
     {
       path: '/add',
       component: () => import('@/views/AddUser.vue')
+    },
+    {
+      path: '/users/:page',
+      name: 'pageUrl'
     }
   ]
 })
