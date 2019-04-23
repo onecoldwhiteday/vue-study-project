@@ -59,4 +59,8 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.page-title {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
 </style>

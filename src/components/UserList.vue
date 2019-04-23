@@ -44,12 +44,6 @@ export default {
       return this.users.length
     }
   },
-  created: function() {
-    console.log('UserList is created')
-  },
-  mounted: function() {
-    console.log('UserList mounted successfully')
-  },
   methods: {
     handleCopied: function(text) {
       console.log(text)

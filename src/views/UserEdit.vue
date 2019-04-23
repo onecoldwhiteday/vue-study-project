@@ -7,10 +7,12 @@
     </div>
     <template v-else>
       <user-form v-model="user"></user-form>
-      {{ user }}
 
-      <button type="button" class="btn btn-primary" @click="save">Save</button>
-      <button type="button" class="btn btn-danger" @click="cancel">Cancel</button>
+      <div class="button-container">
+        <button type="button" class="btn btn-primary" @click="save">Save</button>
+        <button type="button" class="btn btn-danger" @click="deleteUser">Delete user</button>
+        <button type="button" class="btn btn-warning" @click="cancel">Cancel</button>
+      </div>
     </template>
   </div>
 </template>
@@ -51,6 +53,12 @@ export default {
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     },
+    deleteUser() {
+      axios
+        .delete(this.url, this.user)
+        .then(() => this.$router.push('/users'))
+        .catch(error => console.error(error))
+    },
     cancel() {
       this.$router.push('/users')
     }
@@ -58,7 +66,9 @@ export default {
 }
 </script>
 <style>
-.page-title {
-  margin-top: 100px;
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
 }
 </style>

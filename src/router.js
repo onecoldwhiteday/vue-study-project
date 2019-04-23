@@ -13,7 +13,8 @@ export default new Router({
     },
     {
       path: '/users',
-      component: () => import('@/views/Users.vue')
+      component: () => import('@/views/Users.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/edit/:id',
@@ -25,3 +26,21 @@ export default new Router({
     }
   ]
 })
+
+// Auth (don't let open pages staying unlogged)
+// const test = false
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (test === true) {
+//       next({
+//         path: '/login',
+//         query: { redirect: to.fullPath }
+//       })
+//     } else {
+//     next()
+//     }
+//   } else {
+//     next()
+//   }
+// })

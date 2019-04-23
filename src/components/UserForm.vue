@@ -74,13 +74,7 @@
 
     <div class="form-group row">
       <label for="balance" class="col-sm-4 col-form-label">Balance</label>
-      <input
-        type="text"
-        id="balance"
-        v-model="localUser.balance"
-        readonly
-        class="form-control col-sm-8"
-      />
+      <input type="text" id="balance" v-model="localUser.balance" class="form-control col-sm-8" />
     </div>
 
     <div class="form-group row">
@@ -119,8 +113,6 @@
         class="form-control col-sm-8"
       />
     </div>
-
-    <pre>{{ localUser }}</pre>
   </form>
 </template>
 <script>
