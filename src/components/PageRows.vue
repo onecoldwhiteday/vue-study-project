@@ -1,18 +1,13 @@
 <template>
   <div>
     <input
-      type="range"
-      v-model.number="rows"
-      min="5"
+      type="number"
+      class="form-control"
+      min="1"
       :max="max"
-      class="form-control-range"
-      id="rows-range"
-      list="marks"
+      v-model="rows"
+      pattern="[0-9].{2}"
     />
-    <label>There is {{ rows }} users on the page</label>
-    <datalist id="marks">
-      <option v-for="point in max" :value="point" :key="point">{{ item }}</option>
-    </datalist>
   </div>
 </template>
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-striped">
+  <table class="table table-dark">
     <caption>
       Users Total:
       <span class="users-amount">{{ total }}</span>

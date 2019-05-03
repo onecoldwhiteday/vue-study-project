@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/users',
       component: () => import('@/views/Users.vue'),
-      meta: { requiresAuth: true }
+      props: true
     },
     {
       path: '/edit/:id',
@@ -23,10 +23,6 @@ export default new Router({
     {
       path: '/add',
       component: () => import('@/views/AddUser.vue')
-    },
-    {
-      path: '/users/:page',
-      name: 'pageUrl'
     }
   ]
 })

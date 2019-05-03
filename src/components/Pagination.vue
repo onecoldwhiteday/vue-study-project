@@ -8,7 +8,7 @@
           </button>
         </li>
         <li v-for="page in pages" :key="page" class="page-item">
-          <button type="button" class="page-link">{{ page }}</button>
+          <button type="button" class="page-link" @click="changePage(page)">{{ page }}</button>
         </li>
         <li class="page-item">
           <button type="button" class="page-link" @click="nextPage" :disabled="lastPage">
@@ -65,6 +65,9 @@ export default {
     },
     getCurrentPage() {
       this.$emit('input', this.currentPage)
+    },
+    changePage(page) {
+      this.currentPage = page
     }
   }
 }
