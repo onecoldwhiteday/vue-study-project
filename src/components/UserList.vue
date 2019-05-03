@@ -5,11 +5,6 @@
       <span class="users-amount">{{ total }}</span>
     </caption>
     <tr>
-      <td colspan="4">
-        <page-rows v-model="rows" :max="total"></page-rows>
-      </td>
-    </tr>
-    <tr>
       <th>#</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -36,7 +31,7 @@
     <tr>
       <td colspan="4"></td>
       <td colspan="4">
-        <pagination :users="users" v-model="currentPage" :rows="rows"></pagination>
+        <pagination :users="users" v-model="currentPage" :users-on-page="usersOnPage"></pagination>
       </td>
     </tr>
   </table>
@@ -46,8 +41,7 @@
 export default {
   name: 'UserList',
   components: {
-    pagination: () => import('@/components/Pagination.vue'),
-    'page-rows': () => import('@/components/PageRows.vue')
+    pagination: () => import('@/components/Pagination.vue')
   },
   props: {
     users: {
@@ -56,15 +50,15 @@ export default {
     }
   },
   data: () => ({
-    rows: 5,
-    currentPage: null
+    usersOnPage: 5,
+    currentPage: 1
   }),
   computed: {
     total() {
       return this.users.length
     },
     start() {
-      return this.currentPage * this.rows
+      return this.currentPage * this.usersOnPage - 5
     }
   },
   methods: {
@@ -72,8 +66,8 @@ export default {
       this.$emit('edit', userId)
     },
     pageView() {
-      let localUsers = [...this.users]
-      return localUsers.slice(this.start, this.start + this.rows)
+      let localUsers = this.users
+      return localUsers.slice(this.start, this.start + this.usersOnPage)
     }
   }
 }
