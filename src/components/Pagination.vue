@@ -57,7 +57,7 @@ export default {
       return this.currentPage > 0 ? this.currentPage - 1 : 1
     },
     totalPages() {
-      return Math.floor(this.users.length / this.usersOnPage)
+      return Math.ceil(this.users.length / this.usersOnPage)
     },
     pages() {
       let pagesList = []

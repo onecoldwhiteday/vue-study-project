@@ -5,6 +5,12 @@
       <span class="users-amount">{{ total }}</span>
     </caption>
     <tr>
+      <td colspan="4"></td>
+      <td colspan="4">
+        <users-on-page v-model="usersOnPage"></users-on-page>
+      </td>
+    </tr>
+    <tr>
       <th>#</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -41,7 +47,8 @@
 export default {
   name: 'UserList',
   components: {
-    pagination: () => import('@/components/Pagination.vue')
+    pagination: () => import('@/components/Pagination.vue'),
+    'users-on-page': () => import('@/components/UsersOnPage.vue')
   },
   props: {
     users: {
@@ -58,7 +65,7 @@ export default {
       return this.users.length
     },
     start() {
-      return this.currentPage * this.usersOnPage - 5
+      return this.currentPage * this.usersOnPage - this.usersOnPage
     }
   },
   methods: {
