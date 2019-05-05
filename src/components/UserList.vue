@@ -1,46 +1,42 @@
 <template>
-  <table class="table table-dark">
-    <caption>
-      Users Total:
-      <span class="users-amount">{{ total }}</span>
-    </caption>
-    <tr>
-      <td colspan="4"></td>
-      <td colspan="4">
-        <users-on-page v-model="usersOnPage"></users-on-page>
-      </td>
-    </tr>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Is Active</th>
-      <th>Balance</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Registered</th>
-    </tr>
+  <div class="user-list">
+    <users-on-page v-model="usersOnPage"></users-on-page>
+    <table class="table table-dark users-table">
+      <caption class="users-total">
+        Users Total:
+        <span class="users-amount">{{ total }}</span>
+      </caption>
+      <slot name="table-header">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Is Active</th>
+          <th>Balance</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Registered</th>
+        </tr>
+      </slot>
 
-    <tr v-for="user in pageView()" :key="user.id">
-      <td>
-        <router-link :to="'/edit/' + user.id"> # {{ user.id }} </router-link>
-      </td>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.isActive }}</td>
-      <td>{{ user.balance }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.phone }}</td>
-      <td>{{ user.registered }}</td>
-    </tr>
+      <tr v-for="user in pageView()" :key="user.id">
+        <slot name="table-body" :user="user">
+          <td>
+            <router-link :to="'/edit/' + user.id"> # {{ user.id }} </router-link>
+          </td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.isActive }}</td>
+          <td>{{ user.balance }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.registered }}</td>
+        </slot>
+      </tr>
+    </table>
 
-    <tr>
-      <td colspan="4"></td>
-      <td colspan="4">
-        <pagination :users="users" v-model="currentPage" :users-on-page="usersOnPage"></pagination>
-      </td>
-    </tr>
-  </table>
+    <pagination :users="users" v-model="currentPage" :users-on-page="usersOnPage"></pagination>
+  </div>
 </template>
 
 <script>
@@ -82,5 +78,12 @@ export default {
 <style>
 .users-amount {
   color: red;
+}
+.users-total {
+  color: white;
+  font-weight: bold;
+}
+.users-table {
+  border-radius: 8px;
 }
 </style>

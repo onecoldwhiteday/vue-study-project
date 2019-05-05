@@ -1,11 +1,28 @@
 <template>
-  <div class="users-page">
-    <h2 class="page-title">User List</h2>
+  <div>
+    <h2 class="page-title">Phonebook</h2>
 
     <div v-if="!haveUsers" class="alert alert-warning">
       Loading...
     </div>
-    <user-list v-else :users="users"></user-list>
+    <user-list v-else :users="users">
+      <template v-slot:table-header>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone</th>
+        </tr>
+      </template>
+      <template v-slot:table-body="{ user }">
+        <td>
+          <router-link :to="'/edit/' + user.id"> # {{ user.id }} </router-link>
+        </td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.phone }}</td>
+      </template>
+    </user-list>
   </div>
 </template>
 
@@ -13,7 +30,7 @@
 import axios from '@/axios.js'
 
 export default {
-  name: 'UsersListPage',
+  name: 'PhonesPage',
   components: {
     'user-list': () => import('@/components/UserList.vue')
   },
@@ -38,6 +55,9 @@ export default {
           this.users = response.data
         })
         .catch(error => console.error(error))
+    },
+    testParent() {
+      alert('testParent')
     }
   }
 }
@@ -45,8 +65,5 @@ export default {
 <style>
 .page-title {
   margin-top: 100px;
-}
-.users-page {
-  background-color: gray;
 }
 </style>

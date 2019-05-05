@@ -17,6 +17,11 @@ export default new Router({
       props: true
     },
     {
+      path: '/phones',
+      component: () => import('@/views/Phones.vue'),
+      props: true
+    },
+    {
       path: '/edit/:id',
       component: () => import('@/views/UserEdit.vue')
     },

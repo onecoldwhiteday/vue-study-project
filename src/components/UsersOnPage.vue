@@ -1,7 +1,11 @@
 <template>
   <div>
-    <input type="number" min="1" v-model.number="usersOnPage" />
-    <p>There is {{ usersOnPage }} users on page</p>
+    <select min="1" v-model.number="usersOnPage" class="users-on-page form-control">
+      <option value="2">2</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="100">100</option>
+    </select>
   </div>
 </template>
 <script>
@@ -25,3 +29,10 @@ export default {
   }
 }
 </script>
+<style>
+.users-on-page {
+  padding-left: 5px;
+  width: 100px;
+  margin-bottom: 30px;
+}
+</style>

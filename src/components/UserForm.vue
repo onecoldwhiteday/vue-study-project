@@ -10,9 +10,15 @@
       <input
         type="text"
         id="user-name"
+        name="firstName"
         v-model="localUser.firstName"
+        v-validate="'required'"
         class="form-control col-sm-8"
+        :class="{ 'is-invalid': errors.has('firstName') }"
       />
+      <div class="invalid-feedback" v-show="errors.has('firstName')">
+        {{ errors.first('firstName') }}
+      </div>
     </div>
 
     <div class="form-group row">
@@ -37,14 +43,11 @@
     </div>
 
     <div class="form-group row">
-      <label for="picture" class="col-form-label col-sm-4">Picture</label>
+      <label for="picture" class="col-form-label col-sm-4"> Pic preview</label>
       <img :src="localUser.picture" id="picture" alt="avatar" />
     </div>
 
-    <div class="form-group row">
-      <label for="url" class="col-form-label col-sm-4">Pic URL</label>
-      <input type="text" id="url" v-model="localUser.picture" class="form-control col-sm-8" />
-    </div>
+    <avatar-uploader v-model="localUser.picture"></avatar-uploader>
 
     <div class="form-group row">
       <label for="age" class="col-sm-4 col-form-label">Age</label>
@@ -93,7 +96,7 @@
     </div>
     <div class="form-group row">
       <label for="about" class="col-sm-4 col-form-label">About</label>
-      <textarea
+      <!-- <textarea
         name="about"
         v-model="localUser.about"
         id="about"
@@ -101,23 +104,28 @@
         rows="5"
         class="md-textarea form-control col-sm-8"
       >
-      </textarea>
+      </textarea> -->
+      <markdown-editor v-model="localUser.about" ref="markdownEditor"></markdown-editor>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group column">
       <label for="registered" class="col-sm-4 col-form-label">Registration date</label>
-      <input
-        type="text"
-        id="registered"
-        v-model="localUser.registered"
-        class="form-control col-sm-8"
-      />
+      <input type="text" id="registered" v-model="localUser.registered" class="form-control" />
+      <datepicker v-model="localUser.registered" />
     </div>
   </form>
 </template>
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+
 export default {
   name: 'UserForm',
+  inject: ['$validator'],
+  components: {
+    datepicker: () => import('@/components/datepicker.vue'),
+    'avatar-uploader': () => import('@/components/avatar-uploader.vue'),
+    markdownEditor
+  },
   model: {
     prop: 'user',
     event: 'test'
@@ -146,3 +154,6 @@ export default {
   }
 }
 </script>
+<style>
+@import '~simplemde/dist/simplemde.min.css';
+</style>

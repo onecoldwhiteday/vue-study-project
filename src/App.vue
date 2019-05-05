@@ -24,6 +24,11 @@
               Users
             </a>
           </router-link>
+          <router-link to="/phones" tag="li" class="nav-item" active-class="active">
+            <a class="nav-link">
+              Phonebook
+            </a>
+          </router-link>
           <router-link to="/add" tag="li" class="nav-item" active-class="active">
             <a class="nav-link">
               Add user
@@ -40,12 +45,17 @@
 </template>
 
 <style>
+html,
+body {
+  background-color: gray;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: gray;
 }
 #nav {
   padding: 30px;

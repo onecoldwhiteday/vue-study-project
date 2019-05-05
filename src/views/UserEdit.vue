@@ -48,6 +48,12 @@ export default {
         .catch(error => console.error(error))
     },
     save() {
+      this.$validator.validateAll()
+      if (this.errors.any()) {
+        alert('Fill all fields. Please.')
+        return
+      }
+
       axios
         .patch(this.url, this.user)
         .then(() => this.$router.push('/users'))

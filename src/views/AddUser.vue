@@ -25,7 +25,7 @@ export default {
     add() {
       axios
         .post('/users/', this.user)
-        .then(() => this.$router.push('/users'))
+        .then(response => this.$router.push('/edit/' + response.data.id))
         .catch(error => console.error(error))
     },
     cancel() {
