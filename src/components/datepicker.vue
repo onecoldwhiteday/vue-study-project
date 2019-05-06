@@ -16,7 +16,8 @@ export default {
   props: {
     value: {
       type: String,
-      required: true
+      required: true,
+      default: '01.01.1970'
     }
   },
   data: () => ({

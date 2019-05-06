@@ -105,10 +105,7 @@
       />
     </div>
 
-    <!-- <div class="form-group column"> -->
-    <!-- <input type="text" id="registered" v-model="localUser.registered" class="form-control" /> -->
     <datepicker v-model="localUser.registered" />
-    <!-- </div> -->
   </form>
 </template>
 <script>
