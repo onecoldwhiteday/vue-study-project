@@ -96,23 +96,19 @@
     </div>
     <div class="form-group row">
       <label for="about" class="col-sm-4 col-form-label">About</label>
-      <!-- <textarea
-        name="about"
+      <markdown-editor
         v-model="localUser.about"
+        name="about"
         id="about"
-        cols="30"
-        rows="5"
-        class="md-textarea form-control col-sm-8"
-      >
-      </textarea> -->
-      <markdown-editor v-model="localUser.about" ref="markdownEditor"></markdown-editor>
+        ref="markdownEditor"
+        class="col-sm-8"
+      />
     </div>
 
-    <div class="form-group column">
-      <label for="registered" class="col-sm-4 col-form-label">Registration date</label>
-      <input type="text" id="registered" v-model="localUser.registered" class="form-control" />
-      <datepicker v-model="localUser.registered" />
-    </div>
+    <!-- <div class="form-group column"> -->
+    <!-- <input type="text" id="registered" v-model="localUser.registered" class="form-control" /> -->
+    <datepicker v-model="localUser.registered" />
+    <!-- </div> -->
   </form>
 </template>
 <script>
@@ -156,4 +152,7 @@ export default {
 </script>
 <style>
 @import '~simplemde/dist/simplemde.min.css';
+.hide-me {
+  display: none;
+}
 </style>

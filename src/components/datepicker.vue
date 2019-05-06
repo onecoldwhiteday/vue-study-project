@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <input type="text" ref="picker" :value="value" class="form-control col-sm-8 " />
+  <div class="form-group row">
+    <label for="registered" class="col-sm-4 col-form-label">Registration date</label>
+    <input type="text" id="registered" ref="picker" :value="value" class="form-control col-sm-6" />
+    <button type="button" class="btn btn-primary col-sm-2" @click="openCalendar">
+      Choose date
+    </button>
   </div>
 </template>
 <script>
@@ -33,6 +37,8 @@ export default {
     initDatepicker() {
       this.fp = flatpickr(this.$refs.picker, {
         dateFormat: 'd.m.Y',
+        clickOpens: false,
+        allowInput: true,
         onChange: (selectedDates, dateStr) => {
           this.$emit('input', dateStr)
         }
@@ -42,6 +48,9 @@ export default {
       if (this.fp) {
         this.fp.setDate(this.value)
       }
+    },
+    openCalendar() {
+      this.fp.open()
     }
   }
 }
